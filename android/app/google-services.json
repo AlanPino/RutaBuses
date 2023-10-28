@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "888373884547",
+    "project_id": "ruta-buses",
+    "storage_bucket": "ruta-buses.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888373884547:android:c5f5accf25934e42710db6",
+        "android_client_info": {
+          "package_name": "com.example.ruta_buses"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6PFKqOAHhyFCJ-A3f4cK7sPsQD1kopAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
