@@ -2,23 +2,33 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ruta_buses/firebase_options.dart';
 import 'package:ruta_buses/view/screens/login_screen.dart';
+import 'package:ruta_buses/view/screens/main_screen.dart';
+import 'package:ruta_buses/view/screens/signup_screen.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+
+  final _routes = {
+    "/": (context) => const LoginScreen(),
+    "/signup": (context) => const SignupScreen(),
+    "/main": (context) => const MainScreen()
+  };
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
-      theme: ThemeData(useMaterial3: false, colorSchemeSeed: Colors.blue),
-        debugShowCheckedModeBanner: false, home: LoginScreen());
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blueAccent),
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      routes: _routes,
+    );
   }
 }

@@ -5,9 +5,11 @@ import 'package:ruta_buses/services/database_service.dart';
 class AuthService {
   final auth = FirebaseAuth.instance;
 
-  Future<Map<String, dynamic>> registerUser(UserModel user, String password) async {
+  Future<Map<String, dynamic>> registerUser(
+      UserModel user, String password) async {
     try {
-      await auth.createUserWithEmailAndPassword(email: user.email, password: password);
+      await auth.createUserWithEmailAndPassword(
+          email: user.email, password: password);
       DatabaseService().registerUser(user);
       return {"success": true};
     } on FirebaseAuthException catch (e) {
@@ -15,11 +17,12 @@ class AuthService {
     }
   }
 
-  loginUser(String email, String password) {
+  Future<Map<String, dynamic>> loginUser(String email, String password) async {
     try {
-      auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
-      return e;
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      return {"success": true};
+    } on FirebaseAuthException catch (e) {
+      return {"error": e.message, "success": false};
     }
   }
 }

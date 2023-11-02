@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ruta_buses/models/user_model.dart';
 import 'package:ruta_buses/services/auth_service.dart';
+import 'package:ruta_buses/view/wigdets/custom_button.dart';
 import 'package:ruta_buses/view/wigdets/custom_textfield.dart';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -30,7 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(40.0),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -38,33 +39,15 @@ class _SignupScreenState extends State<SignupScreen> {
             CustomTextfield("Fecha de nacimiento", birthDate),
             CustomTextfield("Número de celular", phoneNumber),
             CustomTextfield("Correo electrónico", email),
-            CustomTextfield("Contraseña", password),
-            CustomTextfield("Confirmar contraseña", passwordConfirm),
+            CustomPasswordTextField("Contraseña", password),
+            CustomPasswordTextField("Confirmar contraseña", passwordConfirm),
             const Row(
               children: [
-                Checkbox(value: true, onChanged: null),
+                Checkbox(value: false, onChanged: null),
                 Text("acepto los terminos y condiciones")
               ],
             ),
-            ElevatedButton(
-                onPressed: () async {
-                  UserModel user = UserModel(
-                      name: name.text,
-                      birthDate: birthDate.text,
-                      phoneNumber: phoneNumber.text,
-                      email: email.text);
-
-                  AuthService().registerUser(user, password.text).then((map) {
-                    if (map["success"]) {
-                      Navigator.pop(context);
-                    } else {
-                      setState(() {
-                        _error = map["error"].toString();
-                      });
-                    }
-                  });
-                },
-                child: const Text("Registrarse")),
+            CustomButton(function: signup, text: "registrarse"),
             Text(
               _error,
               style: const TextStyle(color: Colors.red),
@@ -73,5 +56,30 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
+  }
+
+  signup() async {
+    UserModel user = UserModel(
+        name: name.text,
+        birthDate: birthDate.text,
+        phoneNumber: phoneNumber.text,
+        email: email.text);
+
+    if (password.text == passwordConfirm.text) {
+      AuthService().registerUser(user, password.text).then((map) {
+        if (map["success"]) {
+          Navigator.pop(context);
+        } else {
+          setState(() {
+            _error = map["error"].toString();
+          });
+        }
+      });
+    }
+    else{
+      setState(() {
+        _error = "passwords do not match";
+      });
+    }
   }
 }
