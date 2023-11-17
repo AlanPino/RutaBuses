@@ -3,6 +3,10 @@
         android:label="ruta_buses"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCBAOpoFqZfyz6wBLvex-rnM76sN9QObNA"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

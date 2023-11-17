@@ -18,7 +18,9 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/");
+              },
               icon: Icon(
                 Icons.account_circle,
                 color: Theme.of(context).primaryColor,
@@ -41,8 +43,8 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.directions_bus), label: "ver tablillas")
         ],
-        
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

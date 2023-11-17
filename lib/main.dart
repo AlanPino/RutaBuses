@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ruta_buses/firebase_options.dart';
 import 'package:ruta_buses/view/screens/login_screen.dart';
 import 'package:ruta_buses/view/screens/main_screen.dart';
+import 'package:ruta_buses/view/screens/route_info_screen.dart';
 import 'package:ruta_buses/view/screens/signup_screen.dart';
 
 Future<void> main() async {
@@ -19,7 +20,8 @@ class MainApp extends StatelessWidget {
   final _routes = {
     "/": (context) => const LoginScreen(),
     "/signup": (context) => const SignupScreen(),
-    "/main": (context) => const MainScreen()
+    "/main": (context) => const MainScreen(),
+    "/route": (context) => const RouteInfoScreen()
   };
 
   @override
