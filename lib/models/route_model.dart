@@ -1,12 +1,12 @@
 import 'package:ruta_buses/models/coordinate_model.dart';
 
-class Route {
+class RouteModel {
   String name;
   String imageUrl;
   int travelTime;
   List<Coordinate> coordinates;
 
-  Route(
+  RouteModel(
       {required this.name,
       required this.imageUrl,
       required this.travelTime,

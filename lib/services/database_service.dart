@@ -12,4 +12,13 @@ class DatabaseService {
       "email": user.email
     });
   }
+
+  Future<UserModel> getUser(String email) async {
+    Map<String, dynamic> data = {};
+    await db.collection("Users").doc(email).get().then((DocumentSnapshot doc){
+      data = doc.data() as Map<String, dynamic>;
+
+    });
+    return UserModel(name: data["name"], birthDate: data["birthDate"], phoneNumber: data["phoneNumber"], email: email);
+  }
 }

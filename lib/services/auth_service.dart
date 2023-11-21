@@ -25,4 +25,29 @@ class AuthService {
       return {"error": e.message, "success": false};
     }
   }
+
+  Future<Map<String, dynamic>> logoutUser() async {
+    try {
+      await auth.signOut();
+      return {"success": true};
+    } on FirebaseAuthException catch (e) {
+      return {"error": e.message, "success": false};
+    }
+  }
+
+  bool checkUserLoggedIn() {
+    bool isLoggedIn = false;
+
+    if (auth.currentUser != null) {
+      isLoggedIn = true;
+    }
+
+    return isLoggedIn;
+  }
+
+  Future<UserModel> getUserInfo() async{
+    UserModel user = await DatabaseService().getUser(auth.currentUser!.email.toString());
+    return user;
+  }
+
 }

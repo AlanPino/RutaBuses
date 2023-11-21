@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ruta_buses/services/auth_service.dart';
 import 'package:ruta_buses/view/screens/buses_screen.dart';
 import 'package:ruta_buses/view/screens/map_screen.dart';
 
@@ -19,7 +20,13 @@ class _MainScreenState extends State<MainScreen> {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/");
+                final bool isLoggedIn = AuthService().checkUserLoggedIn();
+
+                if (isLoggedIn) {
+                  Navigator.pushNamed(context, "/profile");
+                } else {
+                  Navigator.pushNamed(context, "/");
+                }
               },
               icon: Icon(
                 Icons.account_circle,
