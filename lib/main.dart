@@ -4,7 +4,6 @@ import 'package:ruta_buses/firebase_options.dart';
 import 'package:ruta_buses/services/auth_service.dart';
 import 'package:ruta_buses/view/screens/login_screen.dart';
 import 'package:ruta_buses/view/screens/main_screen.dart';
-import 'package:ruta_buses/view/screens/route_info_screen.dart';
 import 'package:ruta_buses/view/screens/signup_screen.dart';
 import 'package:ruta_buses/view/screens/user_profile.dart';
 
